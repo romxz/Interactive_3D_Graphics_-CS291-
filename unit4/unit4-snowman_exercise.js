@@ -54,9 +54,10 @@ function fillScene() {
 	// YOUR CHANGES HERE
 	// These positions are given just so you can see the stick.
 	// You will need to reposition, etc.
-	cylinder.position.x = -20;
-	cylinder.position.y = 30;
-	cylinder.position.z = -55;
+	//cylinder.position.x = -20;
+	cylinder.position.y = 50;
+	//cylinder.position.z = -55;
+	cylinder.rotation.x = 90*Math.PI/180;
 
 	scene.add( cylinder );
 }
