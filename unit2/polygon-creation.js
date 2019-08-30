@@ -27,11 +27,13 @@ function PolygonGeometry(sides) {
 
 		// YOUR CODE HERE
 		//Save the vertex location - fill in the code
-
+    geo.vertices.push(new THREE.Vector3(x,y,0));
 	}
 	// YOUR CODE HERE
 	// Write the code to generate minimum number of faces for the polygon.
-
+  for (pt = 1; pt < sides-1; pt++) {
+    geo.faces.push(new THREE.Face3(0,pt,pt+1));
+  }
 	// Return the geometry object
 	return geo;
 }
@@ -101,3 +103,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+

@@ -21,8 +21,8 @@ function PolygonGeometry(sides, location) {
 		// Add 90 degrees so we start at +Y axis, rotate counterclockwise around
 		var angle = (Math.PI/2) + (pt / sides) * 2 * Math.PI;
 
-		var x = Math.cos( angle );
-		var y = Math.sin( angle );
+		var x = Math.cos( angle ) + location.x;
+		var y = Math.sin( angle ) + location.y;
 
 		// Save the vertex location
 		geo.vertices.push( new THREE.Vector3( x, y, 0.0 ) );
