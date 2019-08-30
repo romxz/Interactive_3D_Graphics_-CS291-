@@ -73,21 +73,25 @@ function fillScene() {
   // you just have find a way to perform them in the correct order
 	cube = new THREE.Mesh(
 		new THREE.CubeGeometry( 70, 4, 4 ), minuteHandMaterial );
+	var cube2 = new THREE.Object3D();
+	cube2.add(cube);
 	cube.position.y = 14;
 	cube.position.x = 70/2 - 10;
-	cube.rotation.y = -60 * Math.PI/180;
-	scene.add( cube );
+	cube2.rotation.y = -60 * Math.PI/180;
+	scene.add( cube2 );
 
 	var sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 0.5, 32, 16 ), hourHandMaterial );
+	var sphere2 = new THREE.Object3D();
+	sphere2.add(sphere);
 	sphere.position.y = 18;	// move the hand above the other hand
 	sphere.position.x = 50/2 - 10;
-	sphere.rotation.y = 30 * Math.PI/180;
+	sphere2.rotation.y = 30 * Math.PI/180;
 	sphere.scale.x = 50;
 	sphere.scale.y = 4;
 	sphere.scale.z = 4;
 
-	scene.add( sphere );
+	scene.add( sphere2 );
 }
 
 function init() {
