@@ -15,16 +15,15 @@ function someObject(material) {
 
 	// Student: some data below must be fixed
 	// for both triangles to appear !
-	geometry.vertices.push( new THREE.Vector3( 3, 3, 0 ) );
+  geometry.vertices.push( new THREE.Vector3( 3, 3, 0 ) );
 	geometry.vertices.push( new THREE.Vector3( 7, 3, 0 ) );
 	geometry.vertices.push( new THREE.Vector3( 7, 7, 0 ) );
 	geometry.vertices.push( new THREE.Vector3( 3, 7, 0 ) );
-
+	
 	geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
-	geometry.faces.push( new THREE.Face3( 2, 0, 3 ) );
-
+	geometry.faces.push( new THREE.Face3( 2, 3, 0 ) );
+	
 	var mesh = new THREE.Mesh( geometry, material );
-
 	scene.add( mesh );
 }
 
@@ -94,3 +93,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+
