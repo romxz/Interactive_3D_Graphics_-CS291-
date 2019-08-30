@@ -24,6 +24,8 @@ var ground = true;
 */
 function createCapsule( material, radius, top, bottom, segmentsWidth, openTop, openBottom )
 {
+  var capsule = new THREE.Object3D();
+  
 	// defaults
 	segmentsWidth = (segmentsWidth === undefined) ? 32 : segmentsWidth;
 	openTop = (openTop === undefined) ? false : openTop;
@@ -49,11 +51,23 @@ function createCapsule( material, radius, top, bottom, segmentsWidth, openTop, o
 	// YOUR CODE HERE
 	// Here's a sphere's geometry. Use it to cap the cylinder if
 	// openTop and/or openBottom is false. Bonus points: use instancing!
-	var sphGeom = new THREE.SphereGeometry( radius, segmentsWidth, segmentsWidth/2 );
-
+  	if (!openTop || !openBottom) {
+    		var sphGeom = new THREE.SphereGeometry( radius, segmentsWidth, segmentsWidth/2 );
+    		if (!openTop) {
+      			var sphere1 = new THREE.Mesh(sphGeom, material);
+      			sphere1.position.set(top.x, top.y, top.z);
+      			capsule.add(sphere1);
+    		}
+    		if (!openBottom) {
+      			var sphere2 = new THREE.Mesh(sphGeom, material);
+      			sphere2.position.set(bottom.x, bottom.y, bottom.z);
+      			capsule.add(sphere2);
+    		}
+  	}
 	// You'll probably want to return something other than this...
-	return cyl;
-
+	//return cyl;
+  	capsule.add(cyl);
+  	return capsule;
 }
 
 // Transform cylinder to align with given axis and then move to center
@@ -285,4 +299,3 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
-
