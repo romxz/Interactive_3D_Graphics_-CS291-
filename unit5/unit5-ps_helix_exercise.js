@@ -35,12 +35,31 @@ function createHelix( material, radius, tube, radialSegments, tubularSegments, h
 	var helix = new THREE.Object3D();
 
 	var top = new THREE.Vector3();
+  var bottom = new THREE.Vector3();
 
 	var sine_sign = clockwise ? 1 : -1;
 
 	///////////////
 	// YOUR CODE HERE: remove spheres, use capsules instead, going from point to point.
-	//
+  for (var i = 0; i < arc*radialSegments-1; i++) {
+    bottom.set(radius*Math.cos(i*2*Math.PI/radialSegments),
+		  height*(i/(arc*radialSegments)) - height/2,
+		  sine_sign*radius*Math.sin(i*2*Math.PI/radialSegments));
+    top.set(radius*Math.cos((i+1)*2*Math.PI/radialSegments),
+		  height*((i+1)/(arc*radialSegments)) - height/2,
+		  sine_sign*radius*Math.sin((i+1)*2*Math.PI/radialSegments));
+    var capsule = createCapsule(material, tube, top, bottom, tubularSegments, true, false);
+    helix.add(capsule);
+  }
+  bottom.set(radius*Math.cos((arc*radialSegments-1)*2*Math.PI/radialSegments),
+		height*((arc*radialSegments-1)/(arc*radialSegments)) - height/2,
+		sine_sign*radius*Math.sin((arc*radialSegments-1)*2*Math.PI/radialSegments));
+  top.set(radius, height/2, 0);
+  capsule = createCapsule(material, tube, top, bottom, tubularSegments, false, false);
+  helix.add(capsule);
+  
+	// Adding spheres:
+  /* 
 	var sphGeom = new THREE.SphereGeometry( tube, tubularSegments, tubularSegments/2 );
 	for ( var i = 0; i <= arc*radialSegments ; i++ )
 	{
@@ -54,6 +73,7 @@ function createHelix( material, radius, tube, radialSegments, tubularSegments, h
 
 		helix.add( sphere );
 	}
+  */
 	///////////////
 
 	return helix;
@@ -332,3 +352,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+
