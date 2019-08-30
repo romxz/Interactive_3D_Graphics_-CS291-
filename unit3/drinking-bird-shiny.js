@@ -39,24 +39,28 @@ function createDrinkingBird() {
 	// leg: 4
 	// foot: 30
 	// specular color for all of these to 0.5,0.5,0.5
-	var headMaterial = new THREE.MeshLambertMaterial( );
+	var headMaterial = new THREE.MeshPhongMaterial({shininess: 100});
 	headMaterial.color.r = 104/255;
 	headMaterial.color.g = 1/255;
 	headMaterial.color.b = 5/255;
+  headMaterial.specular.setRGB(0.5,0.5,0.5);
 
-	var hatMaterial = new THREE.MeshLambertMaterial( );
+	var hatMaterial = new THREE.MeshPhongMaterial({shininess: 100});
 	hatMaterial.color.r = 24/255;
 	hatMaterial.color.g = 38/255;
 	hatMaterial.color.b = 77/255;
+  hatMaterial.specular.setRGB(0.5,0.5,0.5);
 
-	var bodyMaterial = new THREE.MeshLambertMaterial( );
+	var bodyMaterial = new THREE.MeshPhongMaterial({shininess: 100});
 	bodyMaterial.color.setRGB( 31/255, 86/255, 169/255 );
+  bodyMaterial.specular.setRGB(0.5,0.5,0.5);
 
-	var legMaterial = new THREE.MeshLambertMaterial( );
+	var legMaterial = new THREE.MeshPhongMaterial({shininess: 4});
 	legMaterial.color.setHex( 0xAdA79b );
+  legMaterial.specular.setRGB(0.5,0.5,0.5);
 
-	var footMaterial = new THREE.MeshLambertMaterial( { color: 0x960f0b } );
-
+	var footMaterial = new THREE.MeshPhongMaterial( { color: 0x960f0b, shininess: 30 } );
+  footMaterial.specular.setRGB(0.5,0.5,0.5);
 	var sphere, cylinder, cube;
 
 	var bevelRadius = 1.9;	// TODO: 2.0 causes some geometry bug.
@@ -208,4 +212,5 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+
 

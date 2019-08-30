@@ -46,6 +46,10 @@ function init() {
 function createBall() {
 	// Do not change the color itself, change the material and use the ambient and diffuse components.
 	var material = new THREE.MeshBasicMaterial( { color: 0x80FC66, shading: THREE.FlatShading } );
+	// Note: in new three.js update, the material ambient color is the same as the diffuse color,  with the THREE.AmbientLight being the main way to adjust its effect.
+	var ka = 0.4;
+  	material.ambient.setRGB(material.color.r*ka, material.color.g*ka, material.color.b*ka);
+	
 	var sphere = new THREE.Mesh( new THREE.SphereGeometry( 400, 64, 32 ), material );
 	return sphere;
 }
