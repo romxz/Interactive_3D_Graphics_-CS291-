@@ -83,9 +83,20 @@ function createSupport() {
 	scene.add( cube );
 
 	// right foot
+  cube = new THREE.Mesh( 
+    new THREE.CubeGeometry( 20+64+110, 52, 6 ), cubeMaterial );
+  cube.position.x = -45;	// (20+32) - half of width (20+64+110)/2
+  cube.position.y = 52/2;	// half of height
+  cube.position.z = -(77 + 6/2);	// offset 77 + half of depth 6/2
+  scene.add( cube );
 
-	// right leg
-
+  // right leg
+  cube = new THREE.Mesh( 
+    new THREE.CubeGeometry( 64, 334+52, 6 ), cubeMaterial );
+  cube.position.x = 0;	// centered on origin along X
+  cube.position.y = (334+52)/2;
+  cube.position.z = -(77 + 6/2);	// offset 77 + half of depth 6/2
+  scene.add( cube );
 }
 
 // Body of the bird - body and the connector of body and head
@@ -93,6 +104,21 @@ function createBody() {
 	var sphereMaterial = new THREE.MeshLambertMaterial( { color: 0xA00000 } );
 	var cylinderMaterial = new THREE.MeshLambertMaterial( { color: 0x0000D0 } );
 
+  // sphere belly
+  var sphere;
+  var radius = 116/2;
+  sphere = new THREE.Mesh(new THREE.SphereGeometry(radius, 32, 16), sphereMaterial);
+  sphere.position.y = 160;
+  scene.add(sphere);
+  
+  // neck
+  var cylinder;
+  var radiusTop = 24/2;
+  var radiusBot = 24/2;
+  var height = 390;
+  cylinder = new THREE.Mesh(new THREE.CylinderGeometry(radiusTop, radiusBot, height, 32), cylinderMaterial);
+  cylinder.position.y = 160 + height/2;
+  scene.add(cylinder);
 }
 
 // Head of the bird - head + hat
@@ -100,6 +126,23 @@ function createHead() {
 	var sphereMaterial = new THREE.MeshLambertMaterial( { color: 0xA00000 } );
 	var cylinderMaterial = new THREE.MeshLambertMaterial( { color: 0x0000D0 } );
 
+  // head
+  var head;
+  var radiusHead = 104/2;
+  head = new THREE.Mesh(new THREE.SphereGeometry(radiusHead, 32, 16), sphereMaterial);
+  head.position.y = 160+390;
+  scene.add(head);
+  
+  // hat
+  var hatBase;
+  var radiusHatBase = 142/2;
+  var radiusHatTop = 80/2;
+  hatBase = new THREE.Mesh(new THREE.CylinderGeometry(radiusHatBase, radiusHatBase, 10), cylinderMaterial);
+  hatBase.position.y = 160+390+40+10/2;
+  scene.add(hatBase);
+  var hatTop = new THREE.Mesh(new THREE.CylinderGeometry(radiusHatTop, radiusHatTop, 70), cylinderMaterial);
+  hatTop.position.y = 160+390+40+10+70/2;
+  scene.add(hatTop);  
 }
 
 function createDrinkingBird() {
