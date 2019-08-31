@@ -307,6 +307,12 @@ function render() {
 	renderer.setViewport( 0.75 * canvasWidth, 0.75 * canvasHeight,
 		0.25 * canvasWidth, 0.25 * canvasHeight );
 	renderer.clear();
+  // Now update rearCam:
+  rearCam.position.copy(camera.position);
+  rearTarget.copy(camera.position);
+  rearTarget.sub(cameraControls.target);
+  rearTarget.add(camera.position);
+  rearCam.lookAt(rearTarget);
 	renderer.render( scene, rearCam );
 }
 
@@ -320,3 +326,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+

@@ -15,7 +15,10 @@ var eyeTargetScale;
 // Your FOV slider should go in this function
 // the value of the slider should be accessible globally via: effectController.fov
 function setupGui() {
-	effectController = {};
+	effectController = {fov: 40};
+  var gui = new dat.GUI();
+  var element = gui.add(effectController, "fov", 1.0, 179.0);
+  element.name("field of view");
 }
 
 function init() {
@@ -323,6 +326,12 @@ function animate() {
 function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
+  // fov control
+  if (camera.fov !== effectController.fov) {
+    camera.fov = effectController.fov;
+    camera.updateProjectionMatrix();
+  }
+  
 	renderer.render(scene, camera);
 }
 
@@ -337,3 +346,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+
