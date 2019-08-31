@@ -33,8 +33,11 @@ function fillScene() {
 	// exponent 1
 	// target position 0, 200, 0
 
-	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.5 );
-	light.position.set( -200, 200, -400 );
+	var light = new THREE.SpotLight( 0xFFFFFF, 1.5 );
+	light.position.set( -400, 1200, 300 );
+  light.angle = 20*Math.PI/180;
+  light.exponent = 1;
+  light.target.position.set(0, 200, 0);
 	scene.add( light );
 
 	var solidGround = new THREE.Mesh(
@@ -327,3 +330,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+

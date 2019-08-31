@@ -21,6 +21,9 @@ function fillScene() {
 	// direction to it is -200, 200, -400
 	// full white color,
 	// intensity 1.5
+  var lightDir = new THREE.DirectionalLight(0xFFFFFF, 1.5);
+  lightDir.position.set(-200, 200, -400);
+  scene.add(lightDir);
 
 	// MATERIALS
 	var headMaterial = new THREE.MeshLambertMaterial( );
@@ -270,3 +273,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+

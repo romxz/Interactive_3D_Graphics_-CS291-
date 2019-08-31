@@ -256,6 +256,8 @@ function animate() {
 function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
+  light.position.x = Math.cos(effectController.angle*Math.PI/180);
+  light.position.z = Math.sin(effectController.angle*Math.PI/180);
 	renderer.render(scene, camera);
 }
 
@@ -278,3 +280,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+

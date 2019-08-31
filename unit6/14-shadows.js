@@ -28,7 +28,12 @@ function init() {
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
-	renderer.setSize(canvasWidth, canvasHeight);
+  console.log(renderer.shadowMapEnabled);
+  // Note: Broken for some reason.
+  //renderer.shadowMapEnabled = true;
+  //renderer.shadowMap.enabled = true;
+  var devicePixelRatio = window.devicePixelRatio || 1; // Evaluates to 2 if Retina
+	renderer.setSize(canvasWidth/devicePixelRatio, canvasHeight/devicePixelRatio);
 	renderer.setClearColorHex( 0x0, 1.0 );
 
 	// CAMERA
@@ -51,6 +56,7 @@ function fillScene() {
 	scene.add( headlight );
 
 	spotlight = new THREE.SpotLight( 0xFFFFFF, 1.0 );
+  spotlight.castShadow = true;
 	spotlight.position.set( -400, 1200, 300 );
 	spotlight.angle = 20 * Math.PI / 180;
 	spotlight.exponent = 1;
@@ -76,7 +82,7 @@ function fillScene() {
 			polygonOffset: true, polygonOffsetFactor: 1.0, polygonOffsetUnits: 4.0
 		}));
 	solidGround.rotation.x = -Math.PI / 2;
-
+  solidGround.receiveShadow = true;
 	scene.add( solidGround );
 
 	//////////////////////////////
@@ -355,3 +361,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+
