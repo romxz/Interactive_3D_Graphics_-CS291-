@@ -29,13 +29,17 @@ function SquareGeometry() {
 	geo.vertices.push( new THREE.Vector3( 0.0, 0.0, 0.0 ) );
 	geo.vertices.push( new THREE.Vector3( 1.0, 0.0, 0.0 ) );
 	geo.vertices.push( new THREE.Vector3( 1.0, 1.0, 0.0 ) );
+  geo.vertices.push( new THREE.Vector3( 0.0, 1.0, 0.0 ) ); // new
 	var uvs = [];
 	uvs.push( new THREE.Vector2( 0.0, 0.0 ) );
 	uvs.push( new THREE.Vector2( 1.0, 0.0 ) );
 	uvs.push( new THREE.Vector2( 1.0, 1.0 ) );
+  uvs.push( new THREE.Vector2( 0.0, 1.0 ) ); // new
 	// generate faces
 	geo.faces.push( new THREE.Face3( 0, 1, 2 ) );
+  geo.faces.push( new THREE.Face3( 0, 2, 3 ) ); // new
 	geo.faceVertexUvs[ 0 ].push( [ uvs[0], uvs[1], uvs[2] ] );
+  geo.faceVertexUvs[ 0 ].push( [ uvs[0], uvs[2], uvs[3] ] ); // new
 
 	// done: return it.
 	return geo;
@@ -102,3 +106,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+

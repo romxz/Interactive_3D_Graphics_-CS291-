@@ -8,12 +8,18 @@ var camera, scene, renderer;
 var cameraControls;
 var clock = new THREE.Clock();
 var teapotSize = 400;
+var texturePath = '/media/img/cs291/textures/water.jpg'
 
 function createMaterial() {
 	// MATERIALS
 	// Student: use the texture '/media/img/cs291/textures/water.jpg'
+  var mapTexture = new THREE.ImageUtils.loadTexture(texturePath);
 	var material = new THREE.MeshPhongMaterial( { shininess: 50 } );
-	material.color.setHSL( 0.09, 0.46, 0.2 );
+  material.specularMap = mapTexture;
+  material.map = mapTexture;
+  
+	//material.color.setHSL( 0.09, 0.46, 0.2 );
+  material.color.setHSL( 0.09, 0.46, 0.8 );
 	material.ambient.copy( material.color );
 	material.specular.setHSL( 0.09, 0.46, 1.0 );
 
@@ -99,3 +105,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+

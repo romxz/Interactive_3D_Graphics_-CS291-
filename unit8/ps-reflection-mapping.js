@@ -37,7 +37,8 @@ function fillScene() {
 	textureCube.format = THREE.RGBFormat;
 
 	var teapotMaterial = new THREE.MeshPhongMaterial(
-		{ color: 0x770000, specular:0xffaaaa } );
+		{ color: 0x770000, specular:0xffaaaa,
+      envMap: textureCube } );
 
 	var teapot = new THREE.Mesh(
 		new THREE.TeapotGeometry( teapotSize,
@@ -119,3 +120,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+

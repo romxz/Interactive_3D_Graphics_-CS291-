@@ -9,6 +9,7 @@ var cameraControls;
 var bevelRadius = 1.9;
 var clock = new THREE.Clock();
 var cylinder,sphere,cube;
+var grassImgPath = '/media/img/cs291/textures/grass512x512.jpg'
 
 function fillScene() {
 	scene = new THREE.Scene();
@@ -25,9 +26,12 @@ function fillScene() {
 
 	// GROUND
 	// Student: texture is located at URL /media/img/cs291/textures/grass512x512.jpg
-	var solidGround = new THREE.Mesh(
+	var grassTexture = new THREE.ImageUtils.loadTexture(grassImgPath);
+  grassTexture.wrapS = grassTexture.wrapT = THREE.RepeatWrapping;
+  grassTexture.repeat.set(10,10);
+  var solidGround = new THREE.Mesh(
 		new THREE.PlaneGeometry( 10000, 10000, 100, 100 ),
-		new THREE.MeshLambertMaterial( { color: 0xFFFFFF } ) );
+		new THREE.MeshLambertMaterial( { map: grassTexture} ) );
 	solidGround.rotation.x = - Math.PI / 2;
 
 	scene.add( solidGround );
@@ -324,3 +328,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+
