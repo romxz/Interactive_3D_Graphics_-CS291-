@@ -185,6 +185,8 @@ function render() {
 	// Student:
 	// Transform the texture here to move downwards at
 	// a rate of one copy of the texture per second.
+  var time = clock.getElapsedTime();
+  texture[effectController.mtlName].offset.set(0.2*Math.sin(2*time), time);
 
 	renderer.render(scene, camera);
 }
@@ -234,3 +236,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+

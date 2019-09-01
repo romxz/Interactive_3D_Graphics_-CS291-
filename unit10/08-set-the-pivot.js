@@ -32,7 +32,7 @@ function init() {
 	renderer.gammaOutput = true;
 	renderer.setSize(canvasWidth, canvasHeight);
 	renderer.setClearColorHex( 0x0, 1.0 );
-	renderer.shadowMapEnabled = true;
+	//renderer.shadowMapEnabled = true;
 
 	// CAMERA
 	camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 4000 );
@@ -332,13 +332,16 @@ function createDrinkingBird(bbird) {
 	// Student: change pivot point
 	// pivotHeight is the height of the crossbar
 	var pivotHeight = 360;
-
+  body.position.y = -pivotHeight;
+  head.position.y = -pivotHeight;
+  bodyhead.position.y = pivotHeight;
 	// add field for animated part, for simplicity
 	bbird.animated = bodyhead;
 
 	bbird.add(support);
 	bbird.add(bodyhead);
 
+  /* // Note: shadowMapEnabled bug; shadows not working atm
 	// go through all objects and set the meshes (only)
 	// so that they cast shadows
 	bbird.traverse( function ( object ) {
@@ -347,7 +350,7 @@ function createDrinkingBird(bbird) {
 			object.receiveShadow = true;
 		}
 	} );
-
+  */
 }
 
 function addToDOM() {
