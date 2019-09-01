@@ -1,10 +1,11 @@
+Note: You can see demos and completed excercises in action [here](https://romxz-cs291.glitch.me).
+=====
+
 cs291
 =====
 
-Tip: For a quick looksie, can see demos and completed excercises in action [here](https://romxz-cs291.glitch.me).
-
-=====
 Interactive 3D Graphics class code
+=====
 
 Take the class at https://www.udacity.com/course/cs291
 
