@@ -71,7 +71,7 @@ void main() {
 	specular *= diffuse*(2.0 + shininess)/8.0;
 	
 	// Student: add test here, when specular < uDropoff, set to 0.0, else to 1.0
-
+  specular = (specular < uDropoff) ? 0.0 : 1.0;
 	gl_FragColor.rgb += uDirLightColor * uSpecularColor * uKs * specular;
 }
 		</script>

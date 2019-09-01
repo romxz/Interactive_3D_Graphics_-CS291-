@@ -46,7 +46,8 @@ void main() {
 	// diffuse: N * L. Normal must be normalized, since it's interpolated.
 	vec3 normal = normalize( vNormal );
 
-	float diffuse = max( dot( normal, lVector ), 0.0);
+	//float diffuse = max( dot( normal, lVector ), 0.0); // :old
+  float diffuse = 0.5+0.5*sin(uScale*vModelPosition.x)*sin(uScale*vModelPosition.y)*sin(uScale*vModelPosition.z);
 
 	// Student: use the vModelPosition as an input to a function and
 	// then multiply the diffuse contribution by this amount.
