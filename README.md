@@ -1,4 +1,4 @@
-Note: You can see demos and completed excercises in action [here](https://romxz-cs291.glitch.me).
+Note: You can see all the demos and completed excercises in action [here](https://romxz-cs291.glitch.me).
 =====
 
 cs291
